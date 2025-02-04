@@ -4,6 +4,7 @@
 echo "Please enter your username::"
 
 read -s USERNAME
-
-
 echo "Username entered: $USERNAME"
+
+echo "Please enter your Password::"
+read -s PASSWORD
