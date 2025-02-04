@@ -3,7 +3,7 @@
 
 echo "Please enter your username::"
 
-read USERNAME
+read -s USERNAME
 
 
 echo "Username entered: $USERNAME"
