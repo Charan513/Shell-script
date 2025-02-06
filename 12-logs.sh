@@ -7,7 +7,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 
-LOGS_FOLDER="/var/log/shellscript-logs"
+LOGS_FOLDER="/var/log/shell-logscripts"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTSMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTSMP.log"
@@ -43,7 +43,7 @@ else
 fi
 
 
-
+ 
 dnf list installed git &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
