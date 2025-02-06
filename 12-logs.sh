@@ -7,7 +7,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 
-LOGS_FOLDER="/var/log/shellscript.logs"
+LOGS_FOLDER="/var/log/shellscript-logs"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTSMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTSMP.log"
@@ -37,13 +37,7 @@ dnf list installed mysql &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
     dnf install mysql -y &>>$LOG_FILE_NAME
-    if [ $? -ne 0 ]
-    then
-        echo "Installing MYSQL ... Failure"
-        exit 1
-    else
-        echo "Installing MYSQL ... Success"
-    fi
+    VALIDATE $? "Installing MYSQL"
 else
     echo -e "MYSQL is already ... $Y Installed"
 fi
@@ -53,7 +47,7 @@ fi
 dnf list installed git &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
-dnf install git -y &>>$LOG_FILE_NAME
+    dnf install git -y &>>$LOG_FILE_NAME
     VALIDATE $? "Installing Git" 
 else
     echo -e "Git is already ... $Y Installed"
