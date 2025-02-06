@@ -23,7 +23,7 @@ VALIDATE(){
 
 }
 
-echo "Script started executing at: $TIMESTSMP" &>>$LOG_FILE_NAME
+echo "Script started executing at: $TIMESTSMP" &>>  $LOG_FILE_NAME
 
 
 if [ $USERID -ne 0 ]
@@ -33,10 +33,10 @@ then
 fi 
 
 
-dnf list installed mysql &>>$LOG_FILE_NAME
+dnf list installed mysql &>> $LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
-    dnf install mysql -y &>>$LOG_FILE_NAME
+    dnf install mysql -y &>> $LOG_FILE_NAME
     if [ $? -ne 0 ]
     then
         echo "Installing MYSQL ... Failure"
@@ -50,10 +50,10 @@ fi
 
 
 
-dnf list installed git &>>$LOG_FILE_NAME
+dnf list installed git &>> $LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
-dnf install git -y &>>$LOG_FILE_NAME
+dnf install git -y &>> $LOG_FILE_NAME
     VALIDATE $? "Installing Git" 
 else
     echo -e "Git is already ... $Y Installed"
