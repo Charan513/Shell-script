@@ -6,6 +6,7 @@ USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[0m"
 
 LOGS_FOLDER="/var/log/shell-logscripts"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
@@ -15,10 +16,10 @@ LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTSMP.log"
 VALIDATE(){
     if [ $? -ne 0 ]
     then
-        echo -e "$2 ... $R Failure"
+        echo -e "$2 ... $R Failure $N"
         exit 1
     else
-        echo -e "$2 ... $G  Success"
+        echo -e "$2 ... $G  Success $N"
     fi
 
 }
@@ -40,7 +41,7 @@ then
     dnf install mysql -y &>>$LOG_FILE_NAME
     VALIDATE $? "Installing MYSQL"
 else
-    echo -e "MYSQL is already ... $Y Installed"
+    echo -e "MYSQL is already ... $Y Installed $N"
 fi
 
 
@@ -51,6 +52,6 @@ then
     dnf install git -y &>>$LOG_FILE_NAME
     VALIDATE $? "Installing Git" 
 else
-    echo -e "Git is already ... $Y Installed"
+    echo -e "Git is already ... $Y Installed $N"
 fi
 
